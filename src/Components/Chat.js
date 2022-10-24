@@ -1,75 +1,71 @@
-import React, { Component } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Alert, ScrollView, TextInput, FlatList, Button, } from 'react-native';
 import { StatusBar } from 'expo-status-bar'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default class Chat extends Component {
+export default function Chat() {
+  const [phoneNumber, setPhoneNumber] = useState()
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        { id: 1, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit amet" },
-        { id: 2, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit amet" },
-        { id: 3, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 4, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 5, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
-        { id: 6, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
-        { id: 7, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 8, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 9, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-      ]
-    };
-  }
+  useEffect(() => {
+    (async () => {
+      const a = await AsyncStorage.getItem("phoneNumber")
+      setPhoneNumber(a)
+    })()
+  }, [])
 
-  renderDate = (date) => {
-    return (
-      <Text style={styles.time}>
-        {date}
-      </Text>
-    );
-  }
+  const [data, setData] = useState([
+    { id: 1, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit amet" },
+    { id: 2, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit amet" },
+    { id: 3, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
+    { id: 4, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
+    { id: 5, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
+    { id: 6, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
+    { id: 7, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
+    { id: 8, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
+    { id: 9, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
+  ]);
 
-  render() {
+
+  
 
     return (
+      <Text>{phoneNumber}</Text>
+      // <View style={styles.container}>
+      //   <StatusBar style="dark" />
+      //   <FlatList style={styles.list}
+      //     data={data}
+      //     keyExtractor={(item) => {
+      //       return item.id;
+      //     }}
+      //     renderItem={(message) => {
+      //       console.log(item);
+      //       const item = message.item;
+      //       let inMessage = item.type === 'in';
+      //       let itemStyle = inMessage ? styles.itemIn : styles.itemOut;
+      //       return (
+      //         <View style={[styles.item, itemStyle]}>
+      //           {/* {!inMessage && this.renderDate(item.date)} */}
+      //           <View style={[styles.balloon]}>
+      //             <Text>{phoneNumber ?? 'aaaaaa'}</Text>
+      //           </View>
+      //           {/* {inMessage && this.renderDate(item.date)} */}
+      //         </View>
+      //       )
+      //     }} />
+      //   <View style={styles.footer}>
+      //     <View style={styles.inputContainer}>
+      //       <TextInput style={styles.inputs}
+      //         placeholder="Write a message..."
+      //         underlineColorAndroid='transparent'
+      //         onChangeText={(name_address) => setData({ name_address })} />
+      //     </View>
 
-      <View style={styles.container}>
-        <StatusBar style="dark" />
-        <FlatList style={styles.list}
-          data={this.state.data}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={(message) => {
-            console.log(item);
-            const item = message.item;
-            let inMessage = item.type === 'in';
-            let itemStyle = inMessage ? styles.itemIn : styles.itemOut;
-            return (
-              <View style={[styles.item, itemStyle]}>
-                {!inMessage && this.renderDate(item.date)}
-                <View style={[styles.balloon]}>
-                  <Text>{item.message}</Text>
-                </View>
-                {inMessage && this.renderDate(item.date)}
-              </View>
-            )
-          }} />
-        <View style={styles.footer}>
-          <View style={styles.inputContainer}>
-            <TextInput style={styles.inputs}
-              placeholder="Write a message..."
-              underlineColorAndroid='transparent'
-              onChangeText={(name_address) => this.setState({ name_address })} />
-          </View>
-
-          <TouchableOpacity style={styles.btnSend}>
-            <Image source={{ uri: "https://img.icons8.com/small/75/ffffff/filled-sent.png" }} style={styles.iconSend} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      //     <TouchableOpacity style={styles.btnSend}>
+      //       <Image source={{ uri: "https://img.icons8.com/small/75/ffffff/filled-sent.png" }} style={styles.iconSend} />
+      //     </TouchableOpacity>
+      //   </View>
+      // </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
