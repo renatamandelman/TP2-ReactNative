@@ -12,15 +12,24 @@ import {
 import PhoneInput from "react-native-phone-number-input";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Shake from 'expo-shake';
 
 
 
-export default function Setting(){
+
+export default function phoneNumber(){
   const [value, setValue] = useState("");
   const [formattedValue, setFormattedValue] = useState("");
   const [valid, setValid] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef(null);
+
+  Shake.addListener(() => {
+    alert('Undo Typing');
+  });
+  
+  Shake.removeSubscription(() => {});
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />

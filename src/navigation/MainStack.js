@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Chat from '../Components/Chat';
-import Setting from '../Components/Setting';
+import phoneNumber from '../Components/phoneNumber';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ const MainStack = () => {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
-            } else if (route.name === 'Setting') {
+            } else if (route.name === 'phoneNumber') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
 
@@ -40,8 +40,8 @@ const MainStack = () => {
                 component={Chat}
             />
               <Tab.Screen
-                name='Setting'
-                component={Setting}
+                name='phoneNumber'
+                component={phoneNumber}
             />
          {/* <Stack.Screen
                 name='Container'
