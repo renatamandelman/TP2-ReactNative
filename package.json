@@ -15,7 +15,7 @@
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.0",
     "expo": "~46.0.13",
-    "expo-sensors": "^10.2.2",
+    "expo-sensors": "~11.4.0",
     "expo-shake": "^1.0.0-alpha.1",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",

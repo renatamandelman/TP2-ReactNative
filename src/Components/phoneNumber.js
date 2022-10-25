@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect  } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 import PhoneInput from "react-native-phone-number-input";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Shake from 'expo-shake';
+import { Accelerometer } from 'expo-sensors';
 
 
 
@@ -24,11 +24,6 @@ export default function phoneNumber(){
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef(null);
 
-  Shake.addListener(() => {
-    alert('Undo Typing');
-  });
-  
-  Shake.removeSubscription(() => {});
   
   return (
     <>
@@ -63,12 +58,18 @@ export default function phoneNumber(){
               const checkValid = phoneInput.current?.isValidNumber(value);
               setShowMessage(true);
               setValid(checkValid ? checkValid : false);
+
+              if(value != null) {
               await AsyncStorage.setItem(
                 "phoneNumber",
                 formattedValue
               )
               Keyboard.dismiss()
             }}
+          }
+            else{
+              alert('ingrese un numero')
+            }
           >
             <Text>Check</Text>
           </TouchableOpacity>
