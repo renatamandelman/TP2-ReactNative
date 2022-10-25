@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Chat from '../Components/Chat';
 import phoneNumber from '../Components/phoneNumber';
+import Video1 from '../Components/imagenFondo';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +43,10 @@ const MainStack = () => {
               <Tab.Screen
                 name='phoneNumber'
                 component={phoneNumber}
+            />
+              <Tab.Screen
+                name='imagenFondo'
+                component={Video1}
             />
          {/* <Stack.Screen
                 name='Container'
