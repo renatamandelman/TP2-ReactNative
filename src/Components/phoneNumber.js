@@ -13,6 +13,7 @@ import PhoneInput from "react-native-phone-number-input";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Accelerometer } from 'expo-sensors';
+import Ionicons from "react-native-vector-icons/Ionicons"
 
 
 
@@ -53,23 +54,16 @@ export default function phoneNumber(){
             autoFocus
           />
           <TouchableOpacity
-            style={styles.button}
-            onPress={async ()  => {
+            style={styles.button} onPress={async ()  => {
               const checkValid = phoneInput.current?.isValidNumber(value);
               setShowMessage(true);
               setValid(checkValid ? checkValid : false);
-
-              if(value != null) {
-              await AsyncStorage.setItem(
+               await AsyncStorage.setItem(
                 "phoneNumber",
                 formattedValue
               )
-              Keyboard.dismiss()
+               Keyboard.dismiss()
             }}
-          }
-            else{
-              alert('ingrese un numero')
-            }
           >
             <Text>Check</Text>
           </TouchableOpacity>

@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Chat from '../Components/Chat';
 import phoneNumber from '../Components/phoneNumber';
-import Video1 from '../Components/imagenFondo';
+import imagenFondo from '../Components/imagenFondo';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ const MainStack = () => {
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
             } else if (route.name === 'phoneNumber') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused ? 'ios-list-circle' : 'ios-list';
             }
 
             // You can return any component that you like here!
@@ -46,7 +46,7 @@ const MainStack = () => {
             />
               <Tab.Screen
                 name='imagenFondo'
-                component={Video1}
+                component={imagenFondo}
             />
          {/* <Stack.Screen
                 name='Container'
