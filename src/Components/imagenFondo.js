@@ -1,58 +1,111 @@
 import React, { useState, useEffect }  from 'react';
-import { TextInput,View, StyleSheet, Button,Image,ImageBackground,Dimensions } from 'react-native';
+import {ActivityIndicator,
+  Button,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,Dimensions,ImageBackground, TouchableOpacity } from 'react-native';
 // import { Video, AVPlaybackStatus } from 'expo-av';
 // import logo from './assets/logo.png'; 
 import * as ImagePicker from 'expo-image-picker';
 
 const screenHeight = Dimensions.get('window').height;
  const screenWidth = Dimensions.get('window').width;
-const imagenFondo = () => {
+ export default function ImagenFondo(){
 
 
-const [image, setImage] = useState(null);
-
+    const [image, setImage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    // const { width } = useWindowDimensions();
     const pickImage = async () => {
       // No permissions request is necessary for launching the image library
+  
       let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        // allowsEditing: true,
+        allowsMultipleSelection: true,
+        selectionLimit: 10,
         aspect: [4, 3],
         quality: 1,
       });
-  
-      console.log(result);
-  
+ 
       if (!result.cancelled) {
-        setImage(result.uri);
+        console.log(result.selected[0].uri);
+        setImage(result.selected[0].uri );
       }
     };
   return (
-    <View>
-    <Button title="Pick Image" onPress={pickImage()}/>   
-      <ImageBackground source={{uri:{image} }}
-        resizeMode="stretch"
+//     <FlatList
+//       data={images}
+//       renderItem={({ item }) => (
+//         <Image
+//           source={{ uri: item.uri }}
+//           style={{ width: width / 2, height: 250 }}
+//         />
+//       )}
+//       numColumns={2}
+//       keyExtractor={(item) => item.uri}
+//       contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
+//       ListHeaderComponent={
+//         isLoading ? (
+//           <View>
+//             <Text
+//               style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}
+//             >
+//               Loading...
+//             </Text>
+//             <ActivityIndicator size={"large"} />
+//           </View>
+//         ) : (
+//           <Button title="Pick images" onPress={pickImages} />
+//         )
+//       }
+//     />
+//   );
+// };
+<View>
+ 
+      <ImageBackground source={{uri:image }}
+        resizeMode="cover"
         style={styles.img}> 
-    
+        <TouchableOpacity  style={styles.button}  title="Pick Image" onPress={pickImage}>
+        <Text>Select background image</Text>
+        </TouchableOpacity>   
       </ImageBackground>
     </View>
-  );
-};
+  )}
   
-export default imagenFondo;
   
 const styles = StyleSheet.create({
   img: {
-    height: screenHeight,
+     height: screenHeight,
     width: screenWidth,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 2,
-    padding: 10,
+  button: {
+    marginTop: 20,
+    top:200,
+    height: 50,
+    width: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#7CDB8A',
+    shadowColor: 'rgba(0,0,0,0.4)',
+    shadowOffset: {
+      width: 1,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
   },
+  
+
+  
+
 });
 // export default function imagenFondo(){
 //     // const video = React.useRef(null);

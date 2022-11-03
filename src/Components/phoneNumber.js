@@ -18,7 +18,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 
 
 
-export default function phoneNumber(){
+export default function PhoneNumber(){
   const [value, setValue] = useState("");
   const [formattedValue, setFormattedValue] = useState("");
   const [valid, setValid] = useState(false);

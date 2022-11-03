@@ -1,14 +1,16 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 //import { Ionicons } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Chat from '../Components/Chat';
-import phoneNumber from '../Components/phoneNumber';
-import imagenFondo from '../Components/imagenFondo';
+import PhoneNumber from '../Components/PhoneNumber';
+import ImagenFondo from '../Components/ImagenFondo';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,12 +26,12 @@ const MainStack = () => {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
-            } else if (route.name === 'phoneNumber') {
-              iconName = focused ? 'ios-list-circle' : 'ios-list';
+            } else if (route.name === 'PhoneNumber') {
+              return <FontAwesome name='mobile-phone' size={size} color={color} />
             }
-
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+            else if (route.name === 'ImagenFondo'){
+              return <AntDesign name='picture' size={size} color={color} />
+            }
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
@@ -41,12 +43,12 @@ const MainStack = () => {
                 component={Chat}
             />
               <Tab.Screen
-                name='phoneNumber'
-                component={phoneNumber}
+                name='PhoneNumber'
+                component={PhoneNumber}
             />
               <Tab.Screen
-                name='imagenFondo'
-                component={imagenFondo}
+                name='ImagenFondo'
+                component={ImagenFondo}
             />
          {/* <Stack.Screen
                 name='Container'
