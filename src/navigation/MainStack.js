@@ -8,7 +8,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Chat from '../Components/Chat';
+import Contacts from '../Components/Contacts';
 import PhoneNumber from '../Components/PhoneNumber';
 import ImagenFondo from '../Components/ImagenFondo';
 
@@ -22,7 +22,7 @@ const MainStack = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Chat') {
+            if (route.name === 'Contacts') {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
@@ -39,8 +39,8 @@ const MainStack = () => {
       >
 
             <Tab.Screen
-                name='Chat'
-                component={Chat}
+                name='Contacts'
+                component={Contacts}
             />
               <Tab.Screen
                 name='PhoneNumber'
