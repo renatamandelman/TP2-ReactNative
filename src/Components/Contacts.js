@@ -61,19 +61,19 @@ export default function Contactos() {
   //     />
   //   </SafeAreaView>
   // );
-
+  console.log(contacts)
 
   return (
     
 
     <View style={styles.container}>
       <FlatList
-        data={contacts}
+        data={contacts.sort((a, b) => a.name.localeCompare(b.name))}
         renderItem={({ item }) => (
             
           <TouchableOpacity key={item.id}>
             <View style={styles.item}>
-              <Text style={styles.texto}> {item.name} </Text> <Entypo name='phone' size={25} style={styles.phone}  />
+              <Text style={styles.texto}> {item.name}  <Entypo name='phone' size={25} style={styles.phone}  /></Text>
               {getPhoneNumbers(item)} 
             </View>
           </TouchableOpacity>          

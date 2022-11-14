@@ -5,7 +5,6 @@ import {ActivityIndicator,
   Image,
   StyleSheet,
   Text,
-  useWindowDimensions,
   View,Dimensions,ImageBackground, TouchableOpacity } from 'react-native';
 // import { Video, AVPlaybackStatus } from 'expo-av';
 // import logo from './assets/logo.png'; 
